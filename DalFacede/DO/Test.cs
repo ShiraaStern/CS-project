@@ -4,15 +4,15 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DO
-{
+namespace DO;
+
 
     public record Test
     (
-        int id,
-        Subjects subject,
+        int Id,
+        Subjects Subject,
         DateTime Date,
-        int numQuestion
+        int NumQuestion
     )
 
 
@@ -22,4 +22,4 @@ namespace DO
         }
     }
     
-}
+

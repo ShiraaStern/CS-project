@@ -4,19 +4,19 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DO
-{
+namespace DO;
+
 
     public record Question
     (
-        int id,
-        Subjects subject,
-        string? content,
-        int correct
+        int Id,
+        Subjects Subject,
+        string? Content,
+        int Correct
     )
+    
     {
         Question() : this(0, Subjects.Math, null, 0)
         {
         }
     }
-}
