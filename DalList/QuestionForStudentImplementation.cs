@@ -1,9 +1,5 @@
-﻿using DalApi;
-using DO;
-using System.Collections.Generic;
-using System.Reflection;
-using System.Reflection;
-using Tools;
+﻿using DO;
+using DalApi;
 
 namespace Dal;
 
@@ -33,7 +29,7 @@ internal class QuestionForStudentImplementation : IQuestionForStudent
 
     public QuestionForStudent? Read(int id)
     {
-
+    
         string project = MethodBase.GetCurrentMethod()!.DeclaringType!.FullName!;
         string func = MethodBase.GetCurrentMethod()!.Name;
 
@@ -48,7 +44,7 @@ internal class QuestionForStudentImplementation : IQuestionForStudent
         LogManager.WriteLog(project, func, "End");
         return result;
 
-    }
+    }    
 
     public List<QuestionForStudent> ReadAll()
     {

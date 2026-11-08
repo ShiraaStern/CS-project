@@ -5,19 +5,19 @@ namespace Dal;
 
 internal class StudentImplementation : IStudent
 {
-    public int Create(Student item)
-    {
-        if (DataSource.Students.Exists(s => s?.Id == item.Id))
+        public int Create(Student item)
         {
-            throw new DalAlreadyExistsException($"Student with id {item.Id} already exists.");
-
-        }
-        else
+            if (DataSource.Students.Exists(s => s?.Id == item.Id))
             {
-            DataSource.Students.Add(item);
-            return item.Id;
+                throw new DalAlreadyExistsException($"Student with id {item.Id} already exists.");
+
+            }
+            else
+                {
+                DataSource.Students.Add(item);
+                return item.Id;
+            }
         }
-    }
 
     public void Delete(int id)
     {
