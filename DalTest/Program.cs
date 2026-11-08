@@ -1,6 +1,8 @@
 ﻿using Dal;
 using DalApi;
 using DO;
+using Tools;
+using System.Reflection;
 
 namespace DalTest
 {
@@ -45,8 +47,12 @@ namespace DalTest
                             case 5:
                                 crudMenu("QuestionForStudent", s_dal.QuestionForStudent, inputQuestionForStudent);
                                 break;
+                            case 6:
+                                LogManager.DeleteOldLogs();
+                                Console.WriteLine("Old log folders were deleted.");
+                                break;
                             default:
-                                Console.WriteLine("Invalid choice. Please choose 0-5.");
+                                Console.WriteLine("Invalid choice. Please choose 0-6");
                                 break;
                         }
                     }
@@ -54,6 +60,10 @@ namespace DalTest
             }
             catch (Exception ex)
             {
+                string project = MethodBase.GetCurrentMethod()!.DeclaringType!.FullName!;
+                string func = MethodBase.GetCurrentMethod()!.Name;
+
+                LogManager.WriteLog(project, func, $"Error: {ex.Message}");
                 Console.WriteLine($"Error: {ex.Message}");
             }
         }
@@ -67,6 +77,7 @@ namespace DalTest
             Console.WriteLine("To work with Questions, press 3");
             Console.WriteLine("To work with Answers, press 4");
             Console.WriteLine("To work with QuestionForStudent, press 5");
+            Console.WriteLine("To clean old log folders, press 6");
             Console.WriteLine("To exit the program, press 0");
             Console.Write("Your choice: ");
         }
@@ -115,6 +126,10 @@ namespace DalTest
                         case 5:
                             delete(crud);
                             break;
+                        case 6:
+                            LogManager.DeleteOldLogs();
+                            Console.WriteLine("Old log folders were deleted.");
+                            break;
                         default:
                             Console.WriteLine("Invalid choice. Please choose 0-5.");
                             break;
@@ -133,6 +148,10 @@ namespace DalTest
             }
             catch (Exception ex)
             {
+                string project = MethodBase.GetCurrentMethod()!.DeclaringType!.FullName!;
+                string func = MethodBase.GetCurrentMethod()!.Name;
+
+                LogManager.WriteLog(project, func, $"Error: {ex.Message}");
                 Console.WriteLine($"Error creating item: {ex.Message}");
             }
         }
@@ -173,6 +192,10 @@ namespace DalTest
             }
             catch (Exception ex)
             {
+                string project = MethodBase.GetCurrentMethod()!.DeclaringType!.FullName!;
+                string func = MethodBase.GetCurrentMethod()!.Name;
+
+                LogManager.WriteLog(project, func, $"Error: {ex.Message}");
                 Console.WriteLine($"Error updating item: {ex.Message}");
             }
         }
@@ -189,6 +212,11 @@ namespace DalTest
                 }
                 catch (Exception ex)
                 {
+                    string project = MethodBase.GetCurrentMethod()!.DeclaringType!.FullName!;
+                    string func = MethodBase.GetCurrentMethod()!.Name;
+
+                    LogManager.WriteLog(project, func, $"Error: {ex.Message}");
+
                     Console.WriteLine($"Error deleting item: {ex.Message}");
                 }
             }

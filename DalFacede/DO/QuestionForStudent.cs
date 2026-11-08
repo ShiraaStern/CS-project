@@ -1,22 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿namespace DO;
 
-namespace DO;
-
-    public record QuestionForStudent
-    (
-        int StudentId,
-        int TestId,
-        int QuestionId,
-        int? AnswerId
-   )
+public record QuestionForStudent
+(
+    int StudentId,
+    int TestId,
+    int QuestionId,
+    int? AnswerId
+)
+{
+    public QuestionForStudent() : this(0, 0, 0, null)
     {
-        QuestionForStudent() : this(0, 0, 0, null)
-        {
-        }
     }
+}
 
 

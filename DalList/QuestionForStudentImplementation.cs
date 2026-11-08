@@ -1,6 +1,7 @@
 ﻿using DO;
 using DalApi;
-
+using System.Reflection;
+using Tools;
 namespace Dal;
 
 internal class QuestionForStudentImplementation : IQuestionForStudent
