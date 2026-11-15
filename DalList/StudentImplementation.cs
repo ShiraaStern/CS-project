@@ -14,7 +14,7 @@ internal class StudentImplementation : IStudent
 
         LogManager.WriteLog(project, func, $"Start, id = {item.Id}");
 
-        if (DataSource.Students.Exists(s => s?.Id == item.Id))
+        if (DataSource.Students.Any(s => s?.Id == item.Id))
         {
             LogManager.WriteLog(project, func, $"Student with id {item.Id} already exists");
             throw new DalAlreadyExistsException($"Student with id {item.Id} already exists.");
@@ -64,14 +64,16 @@ internal class StudentImplementation : IStudent
         return result;
     }
 
-    public List<Student> ReadAll()
+    public List<Student?> ReadAll(Func<Student, bool>? filter = null)
     {
         string project = MethodBase.GetCurrentMethod()!.DeclaringType!.FullName!;
         string func = MethodBase.GetCurrentMethod()!.Name;
 
         LogManager.WriteLog(project, func, "Start");
 
-        List<Student> result = new List<Student>(DataSource.Students);
+        List<Student?> result = filter == null
+     ? DataSource.Students.Select(item => item).ToList()
+     : DataSource.Students.Where(filter).ToList();
 
         LogManager.WriteLog(project, func, $"End, {result.Count} items returned");
 

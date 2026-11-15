@@ -86,6 +86,6 @@ internal class QuestionForStudentImplementation : IQuestionForStudent
 
     public void Delete(int id)
     {
-        throw new DalDeletionImpossible("QuestionForStudent cannot be deleted");
+        throw new DalDeletionImpossibleException("QuestionForStudent cannot be deleted");
     }
 }
